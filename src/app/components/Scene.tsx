@@ -13,22 +13,25 @@ export default function Scene({ scrollProgress }: any) {
   const cupRef = useRef<any>(null);
 
   useFrame(() => {
-    const progress = scrollProgress?.current || 0;
+    const progress = scrollProgress.current;
 
-    if (cupRef.current) {
-      cupRef.current.position.y = 1 - progress * 2;
+    cupRef.current.position.y = 2 - progress * 3;
+
+    cupRef.current.rotation.y = progress * Math.PI * 2;
+
+    if (cupRef.current.position.y < -1) {
+      cupRef.current.position.y = -1;
     }
   });
 
   return (
     <>
-      
       <PerspectiveCamera
         fov={45}
         near={0.1}
         far={10000}
         makeDefault
-        position={[0, 0, 10]}
+        position={[0, 2, 6]}
       />
 
       <Environment preset="city" />

@@ -13,7 +13,7 @@ export default function Home() {
   const mainRef = useRef(null);
   const SceneRef = useRef(null);
   const contentRef = useRef(null);
-  const ScrollProgress = useRef(0);
+  const scrollProgress = useRef(0);
 
   useEffect(() => {
     if (!mainRef.current || !contentRef.current) return;
@@ -26,7 +26,7 @@ export default function Home() {
         scrub: 1,
         pin: true,
         onUpdate: (self) => {
-          ScrollProgress.current = self.progress;
+          scrollProgress.current = self.progress;
         },
       },
     });
@@ -57,7 +57,7 @@ export default function Home() {
       <div ref={mainRef} className="relative">
         <div className="fixed top-0 left-0 h-screen w-full" ref={SceneRef}>
           <Canvas frameloop="demand">
-            <Scene ScrollProgress={ScrollProgress} />
+            <Scene scrollProgress={scrollProgress} />
           </Canvas>
         </div>
 
