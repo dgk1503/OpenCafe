@@ -1,5 +1,7 @@
+import { title } from "process";
 import LenisProvider from "./components/LenisProvider";
 import "./globals.css";
+import { Icon, icons } from "lucide-react";
 
 export default function RootLayout({
   children,
@@ -14,3 +16,10 @@ export default function RootLayout({
     </html>
   );
 }
+export const metadata = {
+  title: "OpenCafe",
+  icons: {
+    icon: "./favicon.png",
+  },
+  description: "Demo cafe website !",
+};
