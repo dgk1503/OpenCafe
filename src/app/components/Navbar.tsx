@@ -56,7 +56,7 @@ export default function Navbar() {
           <button
             key={item.id}
             onClick={() => scrollToSection(item.id)}
-            className={`flex items-center justify-center px-6 py-2 rounded-full font-bold capitalize text-lg transition-all duration-200 cursor-pointer ${
+            className={`flex items-center justify-center px-6 py-2 rounded-full font-medium capitalize text-lg transition-all duration-200 cursor-pointer ${
               active === item.id
                 ? "bg-linear-to-r from-amber-400 to-amber-500 text-white shadow-lg"
                 : "text-amber-800 hover:bg-amber-100/40"

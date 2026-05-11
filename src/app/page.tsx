@@ -51,13 +51,13 @@ export default function Home() {
             className="absolute inset-0 w-full h-full object-cover opacity-78"
             style={{ willChange: "transform" }}
           />
-          <div className="relative z-10 flex flex-col bg-black font-bold text-3xl text-white rounded-4xl w-96 h-40 text-center items-center justify-center shadow-2xl opacity-100">
-            <h1 className="text-4xl mb-4 font-sans font-blod">OpenCafé</h1>
-            <p className="text-2xl font-sans">Where coffee meets calm</p>
+          <div className="relative z-10 flex flex-col bg-black font-medium text-3xl text-white rounded-4xl w-96 h-40 text-center items-center justify-center shadow-2xl opacity-100">
+            <h1 className="text-4xl mb-4 font-medium">OpenCafé</h1>
+            <p className="text-2xl ">Where coffee meets calm</p>
           </div>
           <Link
             href="/locations"
-            className="relative z-10 mt-12 px-8 py-4 bg-gradient-to-r from-amber-400 to-amber-500 text-white font-bold rounded-full hover:from-amber-500 hover:to-amber-600 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-2 group"
+            className="relative z-10 mt-12 px-8 py-4 bg-gradient-to-r from-amber-400 to-amber-500 text-white font-medium rounded-full hover:from-amber-500 hover:to-amber-600 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-2 group"
           >
             <MapPin className="h-5 w-5 group-hover:scale-110 transition-transform" />
             <span>Explore Our Locations</span>
