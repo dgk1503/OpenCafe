@@ -33,7 +33,7 @@
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/dgk1503/OpenCafe.git
 cd OpenCafe
 
 # Install dependencies
