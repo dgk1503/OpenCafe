@@ -1,6 +1,6 @@
-# OpenCafe
+## OpenCafe
 
-A modern, high-performance coffee shop website built with cutting-edge web technologies. Features smooth scrolling, 3D graphics, and premium animations.
+
 
 ## 🛠 Tech Stack
 
@@ -14,7 +14,7 @@ A modern, high-performance coffee shop website built with cutting-edge web techn
 | **Language** | [TypeScript](https://www.typescriptlang.org/) 5 |
 | **Linting** | [ESLint](https://eslint.org/) 9 |
 
-## ✨ Features
+## Features
 
 - **3D Visualization** – Interactive 3D elements powered by Three.js and React Three Fiber
 - **Advanced Animations** – Smooth scroll animations with GSAP and ScrollTrigger
@@ -23,7 +23,7 @@ A modern, high-performance coffee shop website built with cutting-edge web techn
 - **Type Safety** – Full TypeScript support
 - **Performance Optimized** – Server-side rendering with Next.js
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js 18+
@@ -52,7 +52,7 @@ npm run build
 npm start
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
@@ -67,7 +67,7 @@ src/
 └── frontend/                # Frontend utilities
 ```
 
-## 🔧 Available Scripts
+## Available Scripts
 
 ```bash
 npm run dev       # Start development server
@@ -76,6 +76,6 @@ npm start         # Start production server
 npm run lint      # Run ESLint
 ```
 
-## 📝 License
+## License
 
 Private project.
