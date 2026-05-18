@@ -1,17 +1,22 @@
-import { title } from "process";
+// app/layout.tsx
 import LenisProvider from "./components/LenisProvider";
 import "./globals.css";
-import { Icon, icons } from "lucide-react";
 import PageTransition from "./components/PageTransition";
+import PreloaderShell from "../app/components/PreLoaderShell";
+
+export const metadata = {
+  title: "OpenCafe",
+  icons: { icon: "./favicon_1.png" },
+  description: "Demo cafe website !",
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="">
-      <body className="">
+    <html lang="en">
+      <body>
+        <PreloaderShell />
         <PageTransition>
           <LenisProvider>{children}</LenisProvider>
         </PageTransition>
@@ -19,10 +24,3 @@ export default function RootLayout({
     </html>
   );
 }
-export const metadata = {
-  title: "OpenCafe",
-  icons: {
-    icon: "./favicon_1.png",
-  },
-  description: "Demo cafe website !",
-};
