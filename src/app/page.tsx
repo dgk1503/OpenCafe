@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const parallaxImageRef = useRef<HTMLImageElement>(null);
-
+  const cardsContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -25,6 +25,24 @@ export default function Home() {
         yPercent: 30,
         ease: "none",
       });
+
+      
+      const cards =
+        cardsContainerRef.current?.querySelectorAll(".ingredient-card");
+      if (cards) {
+        gsap.from(cards, {
+          scrollTrigger: {
+            trigger: "#ingredients",
+            start: "top center",
+            end: "center center",
+          },
+          opacity: 0,
+          scale: 0.8,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: "back.out",
+        });
+      }
     });
 
     return () => ctx.revert();
@@ -34,7 +52,6 @@ export default function Home() {
     <div>
       <Navbar />
       <div className="relative">
-
         <section
           id="home"
           className="min-h-screen w-full flex flex-col items-center justify-center pt-20 bg-linear-to-br from-amber-900 to-amber-800 relative overflow-hidden"
@@ -48,7 +65,7 @@ export default function Home() {
           />
           <div className="relative z-10 flex flex-col bg-black font-medium text-3xl text-white rounded-4xl w-96 h-40 text-center items-center justify-center shadow-2xl">
             <h1 className="text-4xl mb-4 font-medium">OpenCafé</h1>
-            <p className="text-2xl">Where coffee meets calm</p>
+            <p className="text-2xl">Coffee for nerds</p>
           </div>
           <Link
             href="/locations"
@@ -67,7 +84,10 @@ export default function Home() {
             <h2 className="text-5xl text-white text-center mb-16 font-sans">
               Ingredients
             </h2>
-            <div className="mx-auto my-8 grid w-full max-w-7xl grid-cols-2 gap-6 p-4 lg:grid-cols-4">
+            <div
+              className="mx-auto my-8 grid w-full max-w-7xl grid-cols-2 gap-6 p-4 lg:grid-cols-4"
+              ref={cardsContainerRef}
+            >
               {[
                 {
                   icon: <Bean className="h-6 w-6 text-white" />,
@@ -94,7 +114,10 @@ export default function Home() {
                   bg: "https://cdn.shopify.com/s/files/1/0330/7333/files/TRP-February-05_480x480.jpg?v=1620602480",
                 },
               ].map((item) => (
-                <div key={item.title} className="group cursor-pointer">
+                <div
+                  key={item.title}
+                  className="ingredient-card group cursor-pointer"
+                >
                   <div className="relative transform overflow-hidden rounded-2xl p-6 shadow-lg transition-all duration-300 group-hover:scale-105 hover:shadow-xl">
                     <div
                       className="absolute inset-0 rounded-2xl"
@@ -148,11 +171,13 @@ export default function Home() {
             </h2>
             <p className="text-xl text-amber-100 text-center leading-relaxed mb-6">
               Welcome to Aura Cafe, where every cup tells a story. We believe
-              coffee is more than a beverage — it's a moment of tranquility in a busy world.
+              coffee is more than a beverage — it's a moment of tranquility in a
+              busy world.
             </p>
             <p className="text-xl text-amber-100 text-center leading-relaxed mb-6">
               Our mission is to craft the perfect blend of premium ingredients
-              with a focus on quality, sustainability, and the serene experience each sip brings.
+              with a focus on quality, sustainability, and the serene experience
+              each sip brings.
             </p>
             <p className="text-xl text-amber-100 text-center leading-relaxed">
               Join us in discovering the perfect harmony of coffee and calm.
@@ -162,17 +187,17 @@ export default function Home() {
 
         <footer className="flex flex-col items-center justify-center py-8 bg-black text-white text-center">
           <p className="text-amber-400 font-bold">Aura Cafe © 2026</p>
-<p className="text-sm font-bold text-gray-300">
-  Made by{" "}
-  <a
-    href="https://github.com/dgk1503"
-    className="text-sm text-gray-300 font-serif"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    DGK
-  </a>
-</p>
+          <p className="text-sm font-bold text-gray-300">
+            Made by{" "}
+            <a
+              href="https://github.com/dgk1503"
+              className="text-sm text-gray-300 font-serif"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              DGK
+            </a>
+          </p>
         </footer>
       </div>
     </div>

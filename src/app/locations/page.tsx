@@ -74,8 +74,8 @@ export default function Locations() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-900 via-amber-800 to-amber-900">
-      {/* Header */}
+    <div className="min-h-screen bg-linear-to-br from-amber-900 via-amber-800 to-amber-900">
+      
       <div className="pt-32 pb-16 px-4 text-center">
         <Link
           href="/"
@@ -93,7 +93,7 @@ export default function Locations() {
         </p>
       </div>
 
-      {/* Locations Grid */}
+      
       <div className="max-w-6xl mx-auto px-4 pb-20">
         <div className="grid md:grid-cols-2 gap-8">
           {locations.map((location) => (
@@ -107,17 +107,17 @@ export default function Locations() {
               }
             >
               <div className="relative overflow-hidden rounded-3xl shadow-2xl transition-all duration-300 hover:shadow-3xl">
-                {/* Image */}
+              
                 <img
                   src={location.image}
                   alt={location.name}
                   className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300"
                 />
 
-                {/* Overlay */}
+              
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-all duration-300" />
 
-                {/* Content */}
+               
                 <div className="absolute inset-0 flex flex-col justify-end p-6">
                   <h2 className="text-3xl font-bold text-white mb-2 font-sans">
                     {location.name}
@@ -129,7 +129,7 @@ export default function Locations() {
                 </div>
               </div>
 
-              {/* Expanded Details */}
+              
               {selectedLocation === location.id && (
                 <div className="mt-4 p-6 bg-white/10 backdrop-blur rounded-2xl border border-white/20 animate-in fade-in duration-300">
                   <p className="text-amber-50 mb-6 leading-relaxed">
@@ -138,7 +138,7 @@ export default function Locations() {
 
                   <div className="grid md:grid-cols-2 gap-4 mb-6">
                     <div className="flex items-start gap-3">
-                      <Phone className="h-5 w-5 text-amber-400 mt-1 flex-shrink-0" />
+                      <Phone className="h-5 w-5 text-amber-400 mt-1 shrink-0" />
                       <div>
                         <p className="text-sm text-amber-200">Phone</p>
                         <p className="text-white font-semibold">
@@ -147,7 +147,7 @@ export default function Locations() {
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <Clock className="h-5 w-5 text-amber-400 mt-1 flex-shrink-0" />
+                      <Clock className="h-5 w-5 text-amber-400 mt-1 shrink-0" />
                       <div>
                         <p className="text-sm text-amber-200">Hours</p>
                         <p className="text-white font-semibold">
@@ -181,7 +181,7 @@ export default function Locations() {
         </div>
       </div>
 
-      {/* Footer */}
+    
       <footer className="flex flex-col items-center justify-center py-8 bg-black text-white text-center mt-20">
         <p className="text-amber-400 font-bold">Aura Cafe © 2026</p>
         <p className="text-sm font-bold text-gray-300">
