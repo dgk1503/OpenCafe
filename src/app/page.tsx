@@ -304,7 +304,7 @@ export default function Home() {
                 href="/locations"
                 className="group relative inline-flex h-12 items-center justify-center rounded-md bg-transparent px-6 font-medium text-neutral-200 hover:text-white transition-colors"
               >
-                <span>Aura Cafe</span>
+                <span>Open Cafe</span>
                 <div className="ml-1 -rotate-45 transition-all duration-200 group-hover:rotate-0">
                   <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
                     <path
@@ -333,7 +333,7 @@ export default function Home() {
         </section>
 
         <footer className="flex flex-col items-center justify-center py-8 bg-black text-white text-center">
-          <p className="text-amber-400 font-bold">Aura Cafe © 2026</p>
+          <p className="text-amber-400 font-bold">OpenCafe © 2026</p>
           <p className="text-sm font-bold text-gray-300">
             Made with ♡ by{" "}
             <a
