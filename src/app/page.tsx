@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Navbar from "./components/Navbar";
+import AnimatedCounter from "./components/Counter";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { Bean, Candy, GlassWater, Milk, MapPin } from "lucide-react";
@@ -12,6 +13,14 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   const parallaxImageRef = useRef<HTMLImageElement>(null);
   const cardsContainerRef = useRef<HTMLDivElement>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    "https://plus.unsplash.com/premium_photo-1664970900025-1e3099ca757a?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=1200&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1200&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1337&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -26,7 +35,6 @@ export default function Home() {
         ease: "none",
       });
 
-      
       const cards =
         cardsContainerRef.current?.querySelectorAll(".ingredient-card");
       if (cards) {
@@ -48,32 +56,107 @@ export default function Home() {
     return () => ctx.revert();
   }, []);
 
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 3000); 
+
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
   return (
     <div>
       <Navbar />
       <div className="relative">
         <section
           id="home"
-          className="min-h-screen w-full flex flex-col items-center justify-center pt-20 bg-linear-to-br from-amber-900 to-amber-800 relative overflow-hidden"
+          className="min-h-screen w-full flex flex-col items-center justify-center pt-20 bg-black relative overflow-hidden"
         >
-          <img
-            ref={parallaxImageRef}
-            src="/coffee_home_image.jpg"
-            alt="Coffee background"
-            className="absolute inset-0 w-full h-full object-cover opacity-78"
-            style={{ willChange: "transform" }}
-          />
-          <div className="relative z-10 flex flex-col bg-black font-medium text-3xl text-white rounded-4xl w-96 h-40 text-center items-center justify-center shadow-2xl">
-            <h1 className="text-4xl mb-4 font-medium">OpenCafé</h1>
-            <p className="text-2xl">Coffee for nerds</p>
+        
+          <div className="absolute inset-0 w-full h-full">
+            {slides.map((slide, index) => (
+              <div
+                key={index}
+                className="absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out"
+                style={{
+                  opacity: currentSlide === index ? 1 : 0,
+                  backgroundImage: `url(${slide})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div className="absolute inset-0 bg-black/40" />
+              </div>
+            ))}
           </div>
-          <Link
-            href="/locations"
-            className="relative z-10 mt-12 px-8 py-4 bg-linear-to-r from-amber-400 to-amber-500 text-white font-medium rounded-full hover:from-amber-500 hover:to-amber-600 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-2 group"
-          >
-            <MapPin className="h-5 w-5 group-hover:scale-110 transition-transform" />
-            <span>Explore Our Locations</span>
-          </Link>
+
+        
+          <div className="relative z-10 flex flex-col items-center justify-center h-full">
+            <Link
+              href="/locations"
+              className="mt-auto mb-16 px-8 py-4 bg-linear-to-r from-amber-400 to-amber-500 text-white font-medium rounded-full hover:from-amber-500 hover:to-amber-600 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-2 group"
+            >
+              <MapPin className="h-5 w-5 group-hover:scale-110 transition-transform" />
+              <span>Explore Our Locations</span>
+            </Link>
+          </div>
+
+   
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-3">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  currentSlide === index
+                    ? "bg-amber-400 w-8 h-3"
+                    : "bg-amber-400/40 w-3 h-3 hover:bg-amber-400/60"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section
+          id="story"
+          className="min-h-screen w-full flex flex-col items-center justify-center py-20 bg-linear-to-b from-amber-900 to-amber-800"
+        >
+          <div className="max-w-3xl mx-auto px-6">
+            <h2 className="text-5xl font-medium text-amber-50 text-center mb-12">
+              Why OpenCafé Exists
+            </h2>
+            <div className="space-y-6">
+              <p className="text-lg text-amber-100 text-center leading-relaxed">
+                OpenCafé began as a late-night project between developers,
+                designers, and dreamers who believed coffee should be as
+                thoughtfully crafted as great software.
+              </p>
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-amber-400/20">
+                <p className="text-lg text-amber-50 text-center leading-relaxed font-medium mb-4">
+                  Every bean is selected with{" "}
+                  <span className="text-amber-300">precision</span>.<br />
+                  Every cup is brewed with{" "}
+                  <span className="text-amber-300">intention</span>.
+                </p>
+              </div>
+              <p className="text-lg text-amber-100 text-center leading-relaxed">
+                Our mission is simple:
+              </p>
+              <div className="bg-gradient-to-r from-amber-400/10 to-amber-500/10 rounded-xl p-8 border border-amber-400/30">
+                <p className="text-2xl font-medium text-center text-amber-50">
+                  <span className="text-amber-300">Fuel curiosity.</span>
+                  <br />
+                  <span className="text-amber-300">Inspire creativity.</span>
+                  <br />
+                  <span className="text-amber-300">
+                    Keep the code compiling.
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section
@@ -146,6 +229,71 @@ export default function Home() {
         </section>
 
         <section
+          id="stats"
+          className="min-h-screen w-full flex flex-col items-center justify-center py-20 bg-linear-to-br from-amber-900 via-amber-800 to-amber-900"
+        >
+          <div className="max-w-6xl mx-auto px-6">
+            <h2 className="text-5xl font-bold text-amber-50 text-center mb-24 tracking-tight">
+              Our Impact
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-40">
+              <div className="flex flex-col items-center justify-center">
+                <div className="mb-8 text-center">
+                  <div className="text-6xl font-black text-amber-300 tracking-tight font-mono">
+                    <AnimatedCounter from={0} to={1240000} />
+                    <span className="text-6xl text-amber-300 font-bold">+</span>
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-amber-50 text-center leading-tight">
+                  Lines of Code
+                </h3>
+                <p className="text-sm text-amber-200 text-center mt-3 font-medium">
+                  Written Here
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center justify-center">
+                <div className="mb-8 text-center">
+                  <div className="text-6xl font-black text-amber-300 tracking-tight font-mono">
+                    <AnimatedCounter from={0} to={350000} />
+                    <span className="text-6xl text-amber-300 font-bold">+</span>
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-amber-50 text-center leading-tight">
+                  Cups Brewed
+                </h3>
+              </div>
+
+              <div className="flex flex-col items-center justify-center">
+                <div className="mb-8 text-center">
+                  <div className="text-6xl font-black text-amber-300  font-mono">
+                    <AnimatedCounter from={0} to={99} />
+                    <span className="text-2xl text-amber-300 font-bold">%</span>
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-amber-50 text-center leading-tight">
+                  Developer
+                </h3>
+                <p className="text-sm text-amber-200 text-center mt-3 font-medium">
+                  Satisfaction
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center justify-center">
+                <div className="mb-8 text-center">
+                  <div className="text-6xl font-black text-amber-300 tracking-tight">
+                    24<span className="text-6xl"> / </span>7
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-amber-50 text-center leading-tight">
+                  Creative Energy
+                </h3>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
           id="about"
           className="min-h-screen w-full flex flex-col items-center justify-center py-20 bg-linear-to-br from-amber-800 to-amber-900"
         >
@@ -170,9 +318,8 @@ export default function Home() {
               </Link>
             </h2>
             <p className="text-xl text-amber-100 text-center leading-relaxed mb-6">
-              Welcome to Aura Cafe, where every cup tells a story. We believe
-              coffee is more than a beverage — it's a moment of tranquility in a
-              busy world.
+              Where every cup tells a story. We believe coffee is more than a
+              beverage — it's a moment of tranquility in a busy world.
             </p>
             <p className="text-xl text-amber-100 text-center leading-relaxed mb-6">
               Our mission is to craft the perfect blend of premium ingredients
@@ -188,7 +335,7 @@ export default function Home() {
         <footer className="flex flex-col items-center justify-center py-8 bg-black text-white text-center">
           <p className="text-amber-400 font-bold">Aura Cafe © 2026</p>
           <p className="text-sm font-bold text-gray-300">
-            Made by{" "}
+            Made with ♡ by{" "}
             <a
               href="https://github.com/dgk1503"
               className="text-sm text-gray-300 font-serif"

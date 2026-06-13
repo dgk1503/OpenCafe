@@ -6,7 +6,11 @@ export default function Navbar() {
 
   const navItems = [
     { name: "Home", id: "home" },
+    { name: "Story", id: "story" },
     { name: "Ingredients", id: "ingredients" },
+
+    { name: "Impact", id: "stats" },
+
     { name: "About", id: "about" },
   ];
 
@@ -45,26 +49,36 @@ export default function Navbar() {
 
   return (
     <div className="fixed top-0 left-0 right-0 flex justify-center items-center py-8 z-50 bg-linear-to-b from-black/20 to-transparent">
-      <div
-        className="flex gap-6 px-8 py-4 rounded-full bg-linear-to-br from-amber-50/30 to-amber-100/20 backdrop-blur-2xl border border-amber-200/40"
-        style={{
-          boxShadow:
-            "0 8px 32px rgba(217, 119, 6, 0.15), inset 0 2px 8px rgba(255, 255, 255, 0.8)",
-        }}
-      >
-        {navItems.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => scrollToSection(item.id)}
-            className={`flex items-center justify-center px-6 py-2 rounded-full font-medium capitalize text-lg transition-all duration-200 cursor-pointer ${
-              active === item.id
-                ? "bg-linear-to-r from-amber-400 to-amber-500 text-white shadow-lg"
-                : "text-amber-800 hover:bg-amber-100/40"
-            }`}
-          >
-            {item.name}
-          </button>
-        ))}
+      <div className="flex items-center gap-8">
+        <div className="flex-shrink-0 w-16 h-16 rounded-full bg-linear-to-br from-black/20 to-transparent flex items-center justify-center shadow-lg border-2 border-amber-300/50">
+          <img
+            src="/favicon_1.png"
+            alt="OpenCafé Logo"
+            className="w-12 h-12 rounded-full object-cover"
+          />
+        </div>
+
+        <div
+          className="flex gap-6 px-8 py-4 rounded-full bg-linear-to-br from-amber-50/30 to-amber-100/20 backdrop-blur-2xl border border-amber-200/40"
+          style={{
+            boxShadow:
+              "0 8px 32px rgba(217, 119, 6, 0.15), inset 0 2px 8px rgba(255, 255, 255, 0.8)",
+          }}
+        >
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className={`flex items-center justify-center px-6 py-2 rounded-full font-medium capitalize text-lg transition-all duration-200 cursor-pointer ${
+                active === item.id
+                  ? "bg-linear-to-r from-amber-400 to-amber-500 text-white shadow-lg"
+                  : "text-amber-800 hover:bg-amber-100/40"
+              }`}
+            >
+              {item.name}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
