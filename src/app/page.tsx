@@ -255,7 +255,7 @@ export default function Home() {
               <div className="flex flex-col items-center justify-center">
                 <div className="mb-8 text-center">
                   <div className="text-6xl font-black text-amber-300 tracking-tight font-mono">
-                    <AnimatedCounter from={0} to={350000} />
+                    <AnimatedCounter from={0} to={3400} />
                     <span className="text-6xl text-amber-300 font-bold">+</span>
                   </div>
                 </div>
